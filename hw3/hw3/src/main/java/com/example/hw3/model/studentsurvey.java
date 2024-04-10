@@ -44,7 +44,7 @@ public class studentsurvey {
 
     @Column(name = "date_of_survey", nullable = false)
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private String dateOfSurvey;
+    private LocalDate dateOfSurvey;
 
     @Column(name = "liked_most", nullable = false)
     private String likedMost; // options: students, location, campus, atmosphere, dorm rooms, sports
@@ -129,11 +129,11 @@ public class studentsurvey {
         this.email = email;
     }
 
-    public String getDateOfSurvey() {
+    public LocalDate getDateOfSurvey() {
         return dateOfSurvey;
     }
 
-    public void setDateOfSurvey(String dateOfSurvey) {
+    public void setDateOfSurvey(LocalDate dateOfSurvey) {
         this.dateOfSurvey = dateOfSurvey;
     }
 
@@ -159,6 +159,29 @@ public class studentsurvey {
 
     public void setLikelihoodRecommendation(String likelihoodRecommendation) {
         this.likelihoodRecommendation = likelihoodRecommendation;
+    }
+//    @Override
+//    public String toString() {
+//		return dateOfSurvey;
+//    	
+//    }
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "id=" + id +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
+                ", street_ddress='" + streetAddress + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", telephoneumber='" + telephoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", dateOfSurvey=" + dateOfSurvey +
+                ", likedMost='" + likedMost + '\'' +
+                ", interestSource='" + interestSource + '\'' +
+                ", likelihoodOfRecommendation='" + likelihoodRecommendation + '\'' +
+                '}';
     }
 }
 

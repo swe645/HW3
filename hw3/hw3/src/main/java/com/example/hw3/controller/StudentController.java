@@ -28,8 +28,9 @@ public class StudentController {
 	
 	//Build create student api that handles post requests
 	@PostMapping
-	public ResponseEntity<studentsurvey> saveStudent (@RequestBody studentsurvey studentsurvey) {
-		return new ResponseEntity<studentsurvey>(studentService.saveStudent (studentsurvey), HttpStatus.CREATED);
+	public ResponseEntity<studentsurvey> saveStudent (@RequestBody studentsurvey studentsurveydata) {
+		System.out.println(studentsurveydata.toString());
+		return new ResponseEntity<studentsurvey>(studentService.saveStudent (studentsurveydata), HttpStatus.CREATED);
 	}
 	
 	//Create get all students REST API
@@ -39,23 +40,23 @@ public class StudentController {
 	}
 	
 	//create get student by id REST API.
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<studentsurvey> getStudentById(@PathVariable("id") long studentId) {
 		return new ResponseEntity<studentsurvey>(studentService.getStudentById(studentId), HttpStatus.OK);
 	}
 	
 	//Now to implement update Student REST API
-	@PutMapping("{id}")
-	public ResponseEntity<studentsurvey> updateStudent (@PathVariable("id") long id, @RequestBody studentsurvey studentsurvey){ 
-		return new ResponseEntity<studentsurvey>(studentService.updateStudent (studentsurvey, id), HttpStatus.OK);
+	@PutMapping("/{id}")
+	public studentsurvey updateStudent (@PathVariable long id, @RequestBody studentsurvey studentsurveydata){ 
+		return studentService.updateStudent (studentsurveydata, id);
 	}
 	
 	// Create delete student REST API.
-	@DeleteMapping("{id}")
-	public ResponseEntity<String> deleteStudent (@PathVariable("id") long id){
+	@DeleteMapping("/{id}")
+	public String deleteStudent (@PathVariable("id") long id){
 		//delete student from database
 		studentService.deleteStudent(id);
-		return new ResponseEntity<String>("Employee deleted successfully.", HttpStatus.OK);
+		return ("Employee deleted successfully.");
 	}
 	
 }

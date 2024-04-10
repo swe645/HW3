@@ -22,8 +22,8 @@ public class StudentServiceImpl implements StudentService {
 	
 	
 	@Override
-	public studentsurvey saveStudent (studentsurvey studentsurvey) {
-		return studentRepository.save(studentsurvey);
+	public studentsurvey saveStudent (studentsurvey studentsurveydata) {
+		return studentRepository.save(studentsurveydata);
 	}
 	
 	@Override
@@ -51,15 +51,28 @@ public class StudentServiceImpl implements StudentService {
 	}
 	
 	@Override
-	public studentsurvey updateStudent (studentsurvey studentsurvey, long id) {
+	public studentsurvey updateStudent (studentsurvey studentsurveydata, long id) {
 		//check whether student with given id exists in database
 		studentsurvey existingStudentSurvey = studentRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("Student", "Id", id));
-		existingStudentSurvey.setFirstName(studentsurvey.getFirstName()); 
-		existingStudentSurvey.setLastName(studentsurvey.getLastName()); 
-		existingStudentSurvey.setEmail(studentsurvey.getEmail());
+		System.out.println(existingStudentSurvey);
+		existingStudentSurvey.setFirstName(studentsurveydata.getFirstName());
+		existingStudentSurvey.setLastName(studentsurveydata.getLastName());
+		existingStudentSurvey.setStreetAddress(studentsurveydata.getStreetAddress());
+		existingStudentSurvey.setCity(studentsurveydata.getCity());
+		existingStudentSurvey.setState(studentsurveydata.getState());
+		existingStudentSurvey.setZip(studentsurveydata.getZip());
+		existingStudentSurvey.setTelephoneNumber(studentsurveydata.getTelephoneNumber());
+		existingStudentSurvey.setEmail(studentsurveydata.getEmail());
+		existingStudentSurvey.setDateOfSurvey(studentsurveydata.getDateOfSurvey());
+		existingStudentSurvey.setLikedMost(studentsurveydata.getLikedMost());
+		existingStudentSurvey.setInterestSource(studentsurveydata.getInterestSource());
+		existingStudentSurvey.setLikelihoodRecommendation(studentsurveydata.getLikelihoodRecommendation());
+
+        final studentsurvey updatedSurvey = studentRepository.save(existingStudentSurvey);
+        System.out.println(updatedSurvey);
 		//save existing student to database studentRepository.save(existingStudent);
-		return existingStudentSurvey; //return the existing student to the controller layer
+		return updatedSurvey; //return the existing student to the controller layer
 	}
 	
 	
