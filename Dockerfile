@@ -1,5 +1,5 @@
 # Use a base image with Java 18
-FROM adoptopenjdk:18-jre-hotspot AS build
+FROM maven:3.8.5-openjdk-18 AS build
 
 # Set the working directory
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY src ./src
 RUN mvn -B package
 
 # Create a new image with the JAR file
-FROM adoptopenjdk:18-jre-hotspot
+FROM openjdk:18-jdk-alpine3.14
 
 # Set the working directory
 WORKDIR /app
