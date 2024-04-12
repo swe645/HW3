@@ -36,6 +36,7 @@ public class StudentController {
 	//Create get all students REST API
 	@GetMapping
 	public List<studentsurvey> getAllStudents() {
+		System.out.println("Hello");
 		return studentService.getAllStudents();
 	}
 	
