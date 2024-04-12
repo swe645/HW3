@@ -51,29 +51,55 @@ public class StudentServiceImpl implements StudentService {
 	}
 	
 	@Override
-	public studentsurvey updateStudent (studentsurvey studentsurveydata, long id) {
-		//check whether student with given id exists in database
-		studentsurvey existingStudentSurvey = studentRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("Student", "Id", id));
-		System.out.println(existingStudentSurvey);
-		existingStudentSurvey.setFirstName(studentsurveydata.getFirstName());
-		existingStudentSurvey.setLastName(studentsurveydata.getLastName());
-		existingStudentSurvey.setStreetAddress(studentsurveydata.getStreetAddress());
-		existingStudentSurvey.setCity(studentsurveydata.getCity());
-		existingStudentSurvey.setState(studentsurveydata.getState());
-		existingStudentSurvey.setZip(studentsurveydata.getZip());
-		existingStudentSurvey.setTelephoneNumber(studentsurveydata.getTelephoneNumber());
-		existingStudentSurvey.setEmail(studentsurveydata.getEmail());
-		existingStudentSurvey.setDateOfSurvey(studentsurveydata.getDateOfSurvey());
-		existingStudentSurvey.setLikedMost(studentsurveydata.getLikedMost());
-		existingStudentSurvey.setInterestSource(studentsurveydata.getInterestSource());
-		existingStudentSurvey.setLikelihoodRecommendation(studentsurveydata.getLikelihoodRecommendation());
+	public studentsurvey updateStudent(studentsurvey studentsurveydata, long id) {
+	    // Check whether student with given id exists in database
+	    studentsurvey existingStudentSurvey = studentRepository.findById(id).orElseThrow(
+	            () -> new ResourceNotFoundException("Student", "Id", id));
+	    System.out.println(existingStudentSurvey);
+	    // Update fields only if studentsurveydata has non-null values
+	    if (studentsurveydata.getFirstName() != "") {
+	        existingStudentSurvey.setFirstName(studentsurveydata.getFirstName());
+	    }
+	    if (studentsurveydata.getLastName() != "") {
+	        existingStudentSurvey.setLastName(studentsurveydata.getLastName());
+	    }
+	    if (studentsurveydata.getStreetAddress() != "") {
+	        existingStudentSurvey.setStreetAddress(studentsurveydata.getStreetAddress());
+	    }
+	    if (studentsurveydata.getCity() != "") {
+	        existingStudentSurvey.setCity(studentsurveydata.getCity());
+	    }
+	    if (studentsurveydata.getState() != "") {
+	        existingStudentSurvey.setState(studentsurveydata.getState());
+	    }
+	    if (studentsurveydata.getZip() != "") {
+	        existingStudentSurvey.setZip(studentsurveydata.getZip());
+	    }
+	    if (studentsurveydata.getTelephoneNumber() != "") {
+	        existingStudentSurvey.setTelephoneNumber(studentsurveydata.getTelephoneNumber());
+	    }
+	    if (studentsurveydata.getEmail() != "") {
+	        existingStudentSurvey.setEmail(studentsurveydata.getEmail());
+	    }
+	    if (studentsurveydata.getDateOfSurvey() != null) {
+	        existingStudentSurvey.setDateOfSurvey(studentsurveydata.getDateOfSurvey());
+	    }
+	    if (studentsurveydata.getLikedMost() != "") {
+	        existingStudentSurvey.setLikedMost(studentsurveydata.getLikedMost());
+	    }
+	    if (studentsurveydata.getInterestSource() != "") {
+	        existingStudentSurvey.setInterestSource(studentsurveydata.getInterestSource());
+	    }
+	    if (studentsurveydata.getLikelihoodRecommendation() != "") {
+	        existingStudentSurvey.setLikelihoodRecommendation(studentsurveydata.getLikelihoodRecommendation());
+	    }
 
-        final studentsurvey updatedSurvey = studentRepository.save(existingStudentSurvey);
-        System.out.println(updatedSurvey);
-		//save existing student to database studentRepository.save(existingStudent);
-		return updatedSurvey; //return the existing student to the controller layer
+	    // Save the updated student survey to the database
+	    final studentsurvey updatedSurvey = studentRepository.save(existingStudentSurvey);
+	    System.out.println(updatedSurvey);
+	    return updatedSurvey; // Return the updated student survey to the controller layer
 	}
+
 	
 	
 	@Override
