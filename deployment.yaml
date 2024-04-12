@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: my-deployment-apache
   labels:
-    app: swe645-hw2
+    app: swe645-hw3
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: swe645-hw2
+      app: swe645-hw3
   template:
     metadata:
       labels:
-        app: swe645-hw2
+        app: swe645-hw3
     spec:
       containers:
-        - name: swe645-hw2-container
-          image: banudeep/hw2:{{IMAGE_TAG}}
+        - name: swe645-hw3-container
+          image: banudeep/hw3:{{IMAGE_TAG}}
           imagePullPolicy: Always
           ports:
             - containerPort: 80
