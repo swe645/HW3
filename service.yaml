@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: my-service-apache
   labels: 
-    app: swe645-hw2 
+    app: swe645-hw3 
 spec:
   selector:
-    app: swe645-hw2
+    app: swe645-hw3
   type: NodePort
   ports:
   - port: 8080
