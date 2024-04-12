@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment-apache
+  labels:
+    app: swe645-hw2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: swe645-hw2
+  template:
+    metadata:
+      labels:
+        app: swe645-hw2
+    spec:
+      containers:
+        - name: swe645-hw2-container
+          image: banudeep/hw2:{{IMAGE_TAG}}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
