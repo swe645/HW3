@@ -57,7 +57,7 @@ public class StudentController {
 	public String deleteStudent (@PathVariable("id") long id){
 		//delete student from database
 		studentService.deleteStudent(id);
-		return ("Employee deleted successfully.");
+		return ("Survey deleted successfully.");
 	}
 	
 }
